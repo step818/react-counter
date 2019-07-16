@@ -6,6 +6,11 @@ class Counter extends Component {
    tags: ['tag1', 'tag2', 'tag3']
  };
 
+//  constructor() {
+//    super();
+//    this.handleIncrement = this.handleIncrement.bind(this);
+//  }
+
  styles = {
   fontSize: 12,
   fontWeight: 'bold' 
@@ -19,11 +24,21 @@ class Counter extends Component {
    </ul>
  }
 
+ handleIncrement = (product) =>  {
+   console.log(product);
+   this.setState({ count: this.state.count + 1 });
+ };
+
   render() { 
     return (
       <div>
-        {this.state.tags.length===0 && "Please create a new tag."}
-        {this.renderTags()}
+        <span className={this.getBadgeClasses()}> {this.formatCount()} </span>
+        <button 
+          onClick={ () => this.handleIncrement(product) } 
+          className="btn btn-secondary ctn-sm"
+        > 
+          Increment 
+        </button>
       </div>
     );
   }
